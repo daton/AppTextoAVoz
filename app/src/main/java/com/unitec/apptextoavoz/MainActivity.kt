@@ -15,6 +15,10 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     //Este objeto es el intermediario entre neustra app y TextToSpeech
      private var tts:TextToSpeech?=null
+     var edad:Int?=null
+    var x:Float?=null
+    val pi=3.1416
+
     //El siguiente codigo de peticion es un entero, que nos va a ayudar a garantizar el objeto TextToSéech
     //SE iniicio completamente
     private val CODIGO_PETICION=100
@@ -27,6 +31,40 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         //Iniciamos ahora i la varible tts para que ya no este en null
         tts= TextToSpeech(this,this)
+
+        //Invocamos la clase Log
+        Log.i("XYZ", "Se acaba de iniciar el metodo OnCreate")
+        Log.i("XYZ", "Tu edad en dias es "+tuEdadEnDias(21))
+        //El signo e pesos en kotlin se conoce como interpolacion de string junto con llaves
+        Log.i("XYZ", "Tu edad en dias es ${tuEdadEnDias(21)}  ya sale bien")
+        //En kotlin las funciones TAMBIEN SON VARIABLES y su ambito se puede definir solo con llaves
+        Log.i("XYZ","La siguiente es otro ejemplo ${4+5} te dara una suma de 9")
+        //En kotlin, ademas de ser orienatdo a objetos: TAMBIEN ES FUNCIONAL
+        //es decir las funciones son tratadas como una VARIABLE.
+        var x=2
+        //En Kotlin una funcion puede ser declarada DENTRO DE OTRA PORQUE SON TRATADAS COMO VARIABLES
+        fun funcioncita()={
+            print("Una funcioncita ya con notacion funcional!!");
+
+        }
+        //Otro ejemplo con argumentos
+        fun otraFuncion(x:Int, y:Int)={
+          println(  "Esta funcion hace la suma de los argumentos que le pases ${x+y}")
+        }
+
+        Log.i("XYZ", "Mi primer funcion con notacion funcional ${funcioncita()}  listooo")
+        //Se invoca ddirectamente abajo:
+        otraFuncion(5,4)
+
+        //Funciones de orden superior y operador lambda
+
+        //Para este ejercicion necesitamos crear una nueva clase
+        class Ejemplito:(Int)->Int{
+            override fun invoke(p1: Int): Int {
+                TODO("Not yet implemented")
+            }
+
+        }
 
 
         hablar.setOnClickListener {
@@ -100,4 +138,22 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             }
         }
     }
+
+    //Implementamos un metodo o funcion, que es lo mismo
+    fun  saludar( mensaje:String){
+        Log.i("HOLA", "Un mensaje dentro de kotlin")
+    }
+
+    fun saludar2(mensaje:String):String{
+
+        return "Mi mensaje de bienvenida"
+    }
+
+    fun tuEdadEnDias(edad:Int):Int{
+        val diasAnio=365
+
+        return diasAnio*edad
+    }
+
+
 }
